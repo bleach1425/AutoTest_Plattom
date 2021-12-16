@@ -1,0 +1,11 @@
+#jstree1 ul {
+  color: red;
+}
+
+#jstree1 ul ul {
+  color: blue;
+}
+
+#jstree1 ul ul ul {
+  color: blue;
+}

@@ -1,0 +1,42 @@
+.total_price {
+    float: right;
+    padding-right:2%;
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#carts_title {
+    font-size: 30px;
+    text-align: center;
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: rgba(47, 130, 255, 0.767);
+}
+
+.table_information {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+body {
+    background: #eee url('https://i.imgur.com/eeQeRmk.png');
+}
+
+td {
+    padding: 10px 18px !important
+}
+
+.check_button {
+    margin-left: 10%;
+}
+
+#count_block{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.count_price {
+    text-align: right;
+}

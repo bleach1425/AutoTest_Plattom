@@ -1,0 +1,36 @@
+2021-10-08 16 44:34: START TESTING
+2021-10-08 16 44:34: no.1 Testing
+2021-10-08 16 44:34: ----------------------------
+2021-10-08 16 44:34: Start Api_Get_requests
+2021-10-08 16 44:34: ('params: Token=Token', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:34: ('params: Name=Bob', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:34: ('params: Age=15', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:34: FINISH Api_Get_requests
+2021-10-08 16 44:35: no.2 Testing
+2021-10-08 16 44:35: ----------------------------
+2021-10-08 16 44:35: Start Api_Get_requests
+2021-10-08 16 44:35: ('params: Token=Token', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Name=Bob', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Age=15', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: FINISH Api_Get_requests
+2021-10-08 16 44:35: no.3 Testing
+2021-10-08 16 44:35: ----------------------------
+2021-10-08 16 44:35: Start Api_Get_requests
+2021-10-08 16 44:35: ('params: Token=Token', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Name=Bob', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Age=15', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: FINISH Api_Get_requests
+2021-10-08 16 44:35: no.4 Testing
+2021-10-08 16 44:35: ----------------------------
+2021-10-08 16 44:35: Start Api_Get_requests
+2021-10-08 16 44:35: ('params: Token=Token', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Name=Bob', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Age=15', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: FINISH Api_Get_requests
+2021-10-08 16 44:35: no.5 Testing
+2021-10-08 16 44:35: ----------------------------
+2021-10-08 16 44:35: Start Api_Get_requests
+2021-10-08 16 44:35: ('params: Token=Token', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Name=Bob', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: ('params: Age=15', "excepted response: {'server': 'EFAI Preprocessing API', 'version': '0.3.0', 'triton': 'efai-triton:8001', 'torchserve': 'efai-torchserve:8080'}", 'excepted code: 200', 'actually response: {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"}', 'actually code: 200')
+2021-10-08 16 44:35: FINISH Api_Get_requests

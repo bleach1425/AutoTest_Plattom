@@ -1,0 +1,38 @@
+##Readme For YAML Format Define
+'Environment':
+  'user_id': test
+  'user_pw': 123456
+  'upload_file_folder': ./upload_file/
+  'service_ip_address':
+    - https://stag.ai.efai.tw/?
+  # Token
+  'method': GET
+  'base64': 'False'
+  'Token': 'False'
+  'Get_token':
+    'token_url': http://192.168.5.181:5000/test
+    'token_parameter':
+      - parameter1
+      - parameter2
+    'token_value':
+      - values1
+      - values2
+    'json': { "Data": 123 }
+    'token_key': Message
+'APIcommand':
+  'option1':
+    'parameter': Token
+    'value': Token
+    'get_token': 'True'
+  'option2':
+    'parameter': Name
+    'value': Bob
+    'get_token': 'True'
+  'option3':
+    'parameter': Age
+    'value': 15
+    'get_token': 'True'
+'except':
+  - {"Response": {"server":"EFAI Preprocessing API","version":"0.3.0","triton":"efai-triton:8001","torchserve":"efai-torchserve:8080"},"code":200}
+'Configure':
+  Loop: 5

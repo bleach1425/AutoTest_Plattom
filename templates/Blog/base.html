@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <style type=text/css>
+      .guide_bar {
+        font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
+        width: auto;
+      }
+
+      nav.a {
+        color: inherit; /* delete href color */
+        text-decoration: none; /* delete href under line */
+        font-size: 1.2rem;
+        display: block; /* 讓<a>填滿<li> */
+      }
+      .guide_bar > ul a {
+        display: block;
+        margin: 10;
+      }
+      nav li:hover {
+        background-color: rgb(115, 115, 115);
+      }
+      .guide_bar > ul {
+        display: flex;
+        justify-content: space-around;
+        background-color: rgb(230, 230, 230);
+        list-style: none; /* delete item mark */
+        padding-left: 0;
+        height:30px;
+        /* margin-left:120px;
+        margin-right: 120px; */
+      }
+    </style>
+  <title>John | 作品展示部落格</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark".navbar-fixed-top>
+      <div class="container-fluid">
+          <a class="navbar-brand" href="{{ ip }}/Blog">Logo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+              <a class="nav-link" href="{{ ip }}/Blog">Home</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="http://localhost:8000/about/">About</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="http://192.168.5.181:5588/docs">Fastapi</a></li>
+                <li><a class="dropdown-item" href="http://192.168.5.181:5000/UserSystem">Test_platform</a></li>
+                <li><a class="dropdown-item" href="http://192.168.5.181:5555/">Dashboard</a></li>
+                <li><a class="dropdown-item" href="https://github.com/bleach1425?tab=repositories">Github</a></li>
+              </ul>
+              </li>
+          </ul>
+          </div>
+      </div>
+    </nav>
+
+{% block body %}{% endblock %}
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html> -->

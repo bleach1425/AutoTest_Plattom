@@ -1,0 +1,29 @@
+{% extends 'Blog/base.html' %} 
+{% block body %}
+<style type=text/css>
+  p.text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+</style>
+<div class="container mt-5">
+  <h1>文章列表</h1>
+  <div class="row">
+      <br>
+    {% for row in data %}
+<div class="col-md-6">
+      <div class="card my-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ row.1 }}</h5>
+          <p class="text">
+            {{ row.2 }}
+          </p>
+          <a href="Blog/{{ row.0 }}" class='alert-link'>閱讀更多</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

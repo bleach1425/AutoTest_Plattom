@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel ="stylesheet" href="../static/styles/user_system.css">
+</head>
+<body>
+<div class="background" style="background-image: url('../static/images/1.jpg');">
+    <div class="form">
+        <ul class="tab-group">
+            <!--            <li class="tab active"><a href="#signup">Sign Up</a></li>-->
+            <li class="tab"><a href="#login">Wellcome to John Work</a></li>
+        </ul>
+        <div class="tab-content">
+            <!--            <div id="signup">-->
+            <!--                <h1>Sign Up for Free</h1>-->
+            <!--                <div>-->
+            <!--                    <div class="field-wrap">-->
+            <!--                        <label>-->
+            <!--                            Your Name<span class="req">*</span>-->
+            <!--                        </label>-->
+            <!--                        <input type="text" id="name" required autocomplete="off" />-->
+            <!--                    </div>-->
+            <!--                    <div class="field-wrap">-->
+            <!--                        <label>-->
+            <!--                            Set A Password<span class="req">*</span>-->
+            <!--                        </label>-->
+            <!--                        <input type="password" id="password" required autocomplete="off" />-->
+            <!--                    </div>-->
+            <!--                    <div class="field-wrap">-->
+            <!--                        <label>-->
+            <!--                            Email Address<span class="req">*</span>-->
+            <!--                        </label>-->
+            <!--                        <input type="email" id="email" required autocomplete="off" />-->
+            <!--                    </div>-->
+            <!--                    <div class="field-wrap">-->
+            <!--                        <label>-->
+            <!--                            Your Cellphone<span class="req"></span>-->
+            <!--                        </label>-->
+            <!--                        <input type="tel" id="cellphone" required autocomplete="off" />-->
+            <!--                    </div>-->
+            <!--                    <button class="button button-block" onclick="submitForm()" />Get Started</button>-->
+            <!-- </div> -->
+        </div>
+        <div id="login">
+            <form method="POST">
+                <div>
+                    {% if error %}
+                    <p style='color: red; font-size:22px;'><strong>Error:</strong> {{ error }}
+                    {% endif %}
+                    <div class="field-wrap">
+                        <label>
+                            Email Address<span class="req">*</span>
+                        </label>
+                        {{ form.email(class_="form-control form-control-lg") }}
+                        <!-- <input type="email" id="LoginEmail" required autocomplete="off"/> -->
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            Set A Password<span class="req">*</span>
+                        </label>
+                        {{ form.password(class_="form-control form-control-lg") }}
+                    </div>
+                        {{form.submit(class_="button button-block")}}
+                        <!-- <button class="button button-block" onclick="loginForm()">LOGIN</button> -->
+                </div>
+            </form>
+        </div>
+    </div><!-- tab-content -->
+</div> <!-- /form -->
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--JQuery-->
+<script type="text/javascript">
+var Server_ip = {{ server_ip|tojson }};
+
+function loginForm() {
+    const obj1 = {
+        LoginEmail: $("#LoginEmail").val(),
+        LoginPassword: $("#LoginPassword").val()
+    };
+    const myJSON = JSON.stringify(obj1);
+    const url = Server_ip + "UserSystem/Login";
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: myJSON,
+    })
+    .then(res => res.json())
+    .then(data => obj = data)
+    .then(() => {
+    if (obj.Status == "Correct") {
+        alert("登入成功");
+        window.location.href = Server_ip + "index";
+    }
+    else if (obj.Status == "Online") {
+        alert("使用者已登入");
+        window.location.href = Server_ip + "UserSystem";
+    }
+    else {
+        console.log(obj.Status);
+        alert("帳號或密碼輸入錯誤");
+        window.location.href = Server_ip + "UserSystem";
+    }
+    })
+}
+
+$('.form').find('input, textarea').on('keyup blur focus', function(e) {
+
+    var $this = $(this),
+        label = $this.prev('label');
+
+    if (e.type === 'keyup') {
+        if ($this.val() === '') {
+            label.removeClass('active highlight');
+        } else {
+            label.addClass('active highlight');
+        }
+    } else if (e.type === 'blur') {
+        if ($this.val() === '') {
+            label.removeClass('active highlight');
+        } else {
+            label.removeClass('highlight');
+        }
+    } else if (e.type === 'focus') {
+
+        if ($this.val() === '') {
+            label.removeClass('highlight');
+        } else if ($this.val() !== '') {
+            label.addClass('highlight');
+        }
+    }
+
+});
+
+$('.tab a').on('click', function(e) {
+
+    e.preventDefault();
+
+    $(this).parent().addClass('active');
+    $(this).parent().siblings().removeClass('active');
+
+    target = $(this).attr('href');
+
+    $('.tab-content > div').not(target).hide();
+
+    $(target).fadeIn(600);
+
+});
+
+</script>

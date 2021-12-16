@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Youtubbbbbbbbbbbbbbbbbe</title>
+    <style>
+    .box-out {
+      position:relative;
+      #border:solid 1px #555;
+      float:left;
+      padding:0px 10px;
+    }
+    .box-in {
+      position:absolute;
+      left:0;
+      top:0px;
+      right:0;
+      bottom:0;
+      margin:auto;
+    }
+    .title-in {
+      position:absolute;
+      top:240px;
+      left:0;
+      right:0;
+      margin:auto;
+      text-align:center;
+      height:50px;
+      line-height:50px;
+      font-size:18px;
+    }
+    .content-in {
+        margin:auto;
+    }
+    </style>
+</head>
+<body>
+<img src="../static/images/1111.png"> <b style="font-size: 50px">Youtubbbbbbbbbbbbbbbbbe</b>
+<hr>
+<div id="container">
+{% for k in key %}
+    <div class="box-out" style="height:280px; width:400px;">
+        <video class="movie box-in" data-file="../static/movies/{{ k.1 }}" width="400" height="225" controls >
+          <source src="static/movies/{{ k.1 }}" type="video/mp4" />
+        </video>
+        <p class="title-in" id="{{ movies[k.0][k.1]['title'] }}">{{ movies[k.0][k.1]['title'] }}</p>
+        <p class="content-in">觀看次數: {{ movies[k.0][k.1]['count'] }} </p>
+    </div>
+
+
+{% endfor %}
+</div>
+<script>
+    (function(){
+        var movie_items = document.getElementsByClassName('movie'); // 获取所有class含有movie的项，即所有视频
+        console.log(movie_items)
+        for(var i=0;i<movie_items.length;i++){ // 遍历视频
+             movie_items[i].addEventListener('play',function(t){ // 绑定视频的播放事件
+                  var filename = t.target.dataset.file; // 获取data-file的值
+                  correct_filename = filename.split('/')[3]
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('GET', 'incrMovie?name=' + correct_filename)
+                  xhr.setRequestHeader('Content-Type', 'text/plain');
+                  xhr.onreadystatechange = function(){
+                    if(xhr.readyState ==4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                    }
+                  }
+                  xhr.send(null);
+             })
+        }
+    })();
+</script>
+</body>
+</html>

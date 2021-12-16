@@ -1,0 +1,8 @@
+<form action= {{ server_ip }}/test method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.Name.label }}{{ form.Name() }}
+    {{ form.Password.label }}{{ form.Password() }}
+    {{ form.Email.label }}{{ form.Email() }}
+    {{ form.Cellphone.label }}{{ form.Cellphone() }}
+    {{ form.submit() }}
+</form>

@@ -1,0 +1,270 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <meta charset="UTF-8">
+    <title>長佳智能 | 測試項目</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap');
+    </style>
+    <style>
+        h3 {
+            text-align: center;
+            position: relative;
+            font-size: 20px;
+        }
+        body {
+            top: 30%;
+            /* font-size: 30px; */
+            text-align: center;
+            position: relative;
+        }
+        nav {
+            background-color: #00A498;
+            border: 1px solid #a0b3b0;
+            width: 1060px;
+            padding:10px
+        }
+        section {
+            width: 1060px;
+            padding:10px;
+            font-size: 15px;
+            border: 1px solid #a0b3b0;
+            position: relative;
+            margin: auto;
+        }
+        article {
+            font-size: 20px;
+            width: 1060px;
+            padding:30px;
+            height: auto;
+            border: 1px solid #a0b3b0;
+            text-align: center;
+            margin: auto;
+        }
+        div.form-check form-switch {
+            border: 1px solid #a0b3b0;
+            font-size: 15px;
+        }
+        p {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-color: #eee;
+        width: 600px;
+        height: 800px;
+        border: 1px;
+        }
+        #jstree1 ul {
+            color: red;
+        }
+
+        #jstree1 ul ul {
+            color: blue;
+        }
+
+        #jstree1 ul ul ul {
+            color: blue;
+        }
+
+        table,
+        td {
+            font-family: 'Noto Sans TC', sans-serif;
+            width: auto;
+            height: 400px;
+            font-size: 20px;
+            border: 1px solid #a0b3b0;
+        }
+
+        td.content {
+            padding-left: 20px;
+            width: 30%;
+        }
+
+        thead,
+
+        tfoot {
+            background-color: MediumSeaGreen;
+            color: #fff;
+        }
+        nav {
+            padding:30px;
+        }
+    </style>
+</head>
+<body>
+    <center><nav><h2>Upload to Git</h3></nav></center>
+        <article>
+            <table style="margin-left: auto; margin-right: auto;">
+                <tbody>
+                    <tr>
+                        <td class="content" style="vertical-align: text-top;">
+                            <div id="jstree1">
+                                <ul>
+                                    <li><i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#"><i class="jstree-icon jstree-themeicon"></i>Root node 1</a>
+                                        <ul>
+                                            <li><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor  jstree-clicked" href="#"><i class="jstree-icon jstree-themeicon"></i><em>initially</em>
+                                                    <strong>selected</strong></a></li>
+                                            <li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;https://jstree.com/tree-icon.png&quot; }" id="j1_3" class="jstree-node  jstree-leaf" aria-selected="false"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" style="background-image: url(https://jstree.com/tree-icon.png); background-size: auto; background-position: 50% 50%;"></i>custom
+                                                    icon URL</a></li>
+                                            <li role="treeitem" data-jstree="{ &quot;opened&quot; : true }" aria-expanded="true" id="j1_4" class="jstree-node  jstree-open" aria-selected="false"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon"></i>initially open
+                                                </a>
+                                                <ul role="group" class="jstree-children">
+                                                    <li role="treeitem" id="j1_5" class="jstree-node  jstree-leaf jstree-last">
+                                                    <i class="jstree-icon jstree-ocl"></i>
+                                                    <a class="jstree-anchor" href="#">
+                                                        <i class="jstree-icon jstree-themeicon">
+                                                        </i>Another node</a></li>
+                                                </ul>
+                                            </li>
+                                            <li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;glyphicon glyphicon-leaf&quot; }" id="j1_6" class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon glyphicon glyphicon-leaf jstree-themeicon-custom"></i>Custom
+                                                    icon
+                                                    class (bootstrap)</a></li>
+                                        </ul>
+                                    </li>
+                                    <li role="treeitem" id="j1_7" class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="https://www.jstree.com"><i class="jstree-icon jstree-themeicon"></i>Root node 2</a></li>
+                                </ul>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <!-- <button onclick="GetTree()">EXECUTE</button> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <section>
+            <form method="POST" action={{server_ip}}FileCatch_Api enctype="multipart/form-data">
+            <input type="file" id="myFile" accept=".yaml, .dcm" name="myFile" multiple="multiple" />
+            <button type="submit" onclick="send()" value="Submit">上傳</button>
+            </form>
+        </section>
+
+</body>
+
+<script>
+$(".panel-success").on('show.bs.collapse', function() {
+$('.buttonCon').addClass('vis');
+}).on('hide.bs.collapse', function() {
+    $('.buttonCon').removeClass('vis');
+})
+    $(function() {
+    $('#jstree1').jstree({
+        'plugins': ["wholerow", "checkbox"],
+        'core': {
+            'data': [{
+                    "text": "Git Path",
+                    "children": [{
+                            "text": "Main",
+                            "state": {
+                                "selected": true
+                            }
+                        },
+                        {
+                            "text": "Linux",
+                            "state": {
+                                "opened": true
+                            },
+                            "children": [
+                                {
+                                "text": "Linux_ApiCase",
+                                "state": {
+                                    "opened": false
+                                },
+                            },
+                            {
+                                "text": "Linux_AI_ModelCase",
+                                "state": {
+                                    "opened": false
+                                },
+                            }],
+                        },
+                        {
+                            "text": "Windows",
+                            "state": {
+                                "opened": true
+                            },
+                            "children": [
+                                {
+                                "text": "Windows_ApiCase",
+                                "state": {
+                                    "opened": false
+                                },
+                            },
+                            {
+                                "text": "Windows_AI_ModelCase",
+                                "state": {
+                                    "opened": false
+                                },
+                            }],
+                        },
+                        {
+                            "text": "Mac",
+                            "state": {
+                                "opened": true
+                            },
+                            "children": [
+                                {
+                                "text": "Mac_ApiCase",
+                                "state": {
+                                    "opened": false
+                                },
+                            },
+                            {
+                                "text": "Mac_AI_ModelCase",
+                                "state": {
+                                    "opened": false
+                                },
+                            }],
+                        },
+                    ]
+                },
+            ]
+        }
+    });
+});
+
+const Server_ip = {{ server_ip|tojson }};
+const fileUploader = document.getElementById("myFile");
+
+
+fileUploader.addEventListener('change', (e) => {
+    console.log(e.target.files[0]);
+    let form = new FormData();
+    form.append("Select", selectedElms);
+    form.append("File", e.target.files[0]);
+    console.log(form);
+});
+function send() {
+    const selectedElmsIds = [];
+    const selectedElms = $('#jstree1').jstree("get_selected", true);
+    const obj = {
+    "Data":"data",
+    "Select":selectedElms
+    }
+    const myJSON = JSON.stringify(obj)
+    $.each(selectedElms, function() {
+        selectedElmsIds.push(this.text);
+    });
+    fetch("FileCatch_Api", {
+        method : "POST",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body:myJSON,
+        }).then((response)=> {
+            alert("上傳成功")
+            window.close()
+            var url = Server_ip + "TestENV_Api_4";
+            window.opener.location.replace(url);
+            return response.text();
+    })
+}
+</script>

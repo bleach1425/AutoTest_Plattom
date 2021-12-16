@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.js"></script>
+    <!-- <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script> -->
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/styles/jquery.dataTables.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <meta charset="UTF-8">
+    <title>長佳智能 | 測試項目</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+    </style>
+    <style type="text/css">
+    body {
+        background: #eee url('https://i.imgur.com/eeQeRmk.png');
+    }
+    .dataTable {
+        text-align: center;
+    }
+    th.text-center sorting {
+        font-size: 50px;
+    }
+    table {
+        color: black;
+        background-color: white;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #333;
+        width: 600px;
+        height: auto;
+        /* word-wrap: break-word; */
+        table-layout: fixed;
+        z-index: 1;
+    }
+
+    td {
+        font-family: 'Poppins', sans-serif;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px;
+        /* padding: 5px; */
+        border: 1px solid #333;
+    }
+
+    thead{
+        font-family: 'Poppins', sans-serif;
+        background-color: MediumSeaGreen;
+        width: auto;
+    }
+    tfoot {
+        color: #fff;
+    }
+
+    button {
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        float: center;
+    }
+
+    div.bar1 {
+    width: auto;
+    text-align: center;
+    font-size: 25px;
+    height: auto;
+    }
+
+    div.myProgress1 {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background-color: #ddd;
+    }
+
+    div.myBar1 {
+    position: absolute;
+    width: 1%;
+    height: 100%;
+    background-color: #4CAF50;
+    }
+    div.label1 {
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    }
+
+    #bar {
+    width: auto;
+    text-align: center;
+    font-size: 25px;
+    height: auto;
+    }
+
+    #myProgress {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background-color: #ddd;
+    }
+
+    #myBar {
+    position: absolute;
+    width: 1%;
+    height: 100%;
+    background-color: #4CAF50;
+    }
+    #label {
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    }
+    div.FinishBar {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    /* position: absolute; */
+    background-color: #48D1CC;
+    text-align: center;
+    font-size: 25px;
+    line-height: 30px;
+    color: white;
+    }
+    div.ErrorBar {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    /* position: absolute; */
+    background-color: red;
+    text-align: center;
+    font-size: 25px;
+    line-height: 30px;
+    color: white;
+    }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <table id="table" style="width: 80% !important;" !important></table>
+    </div>
+    <center>
+        <button id = "home" onclick="Home()" style="margin-top: 20px;width: 1200px;height: 75px;font-size: 30px;background-color: MediumSeaGreen; color: white; border-width: 1px;">Back to home</button>
+    </center>
+</body>
+</html>
+<script type="text/javascript">
+var Server_ip_socket = {{ server_ip_socket|tojson }};
+var Server_ip = {{ server_ip|tojson }};
+
+function Home() {
+    window.location.href = Server_ip + "index";
+}
+
+function Cut(word) {
+    word = word.replace("[", "");
+    word = word.replace("]", "");
+    word = word.replaceAll("'", '');
+    return word
+}
+
+function info(CaseNumber) {
+    target = "/viewtxt";
+    fetch(target, {
+        method : "GET",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        }).then((result)=> {
+            window.location.href="/viewtxt?CaseNumber=" + CaseNumber
+        // return response.text();
+    })
+}
+
+var CREATE_TIME = {{ CT|tojson }};
+var CASE_NUMBER = {{ CN|tojson }};
+var CASE_CONTENT = {{ CC|tojson }};
+var WORK_STATUS = {{ WS|tojson }};
+var CASE_TYPE = {{ CTY|tojson }};
+var SYSTEM = {{ SY|tojson }};
+var data = {{ DA|tojson }};
+console.log(data);
+
+$(document).ready(function() {
+    namespace = '/test';
+    var socket = io.connect(Server_ip_socket+namespace);
+    // console.log(Server_ip+namespace)
+    // Send my_event frontend to backend
+    socket.on('connect', function() {
+        console.log('Client Connect !!');
+        // socket.emit('CatchCommand', {data: 'Give me data!'});
+    });
+
+    socket.on('Catch_news', function(message) {
+        var CaseStatus = message.data.CaseStatus;
+        var Completeness = message.data.Completeness;
+        var Case = message.data.Case;
+        var NotFinish = []
+        console.log(Completeness);
+        if (Completeness.length > 1) {
+            for (var index=0; index < Completeness.length; index++) {
+                if (Completeness[index] != 100) {
+                    NotFinish.push(index)
+                }
+            }
+        console.log(NotFinish);
+        }
+        if (NotFinish.length >= 1) {
+            var elem = document.getElementsByClassName("myBar1");
+            var elem_value = document.getElementsByClassName("label1");
+            var elem_status = document.getElementsByClassName("status")
+            console.log("elem_status: ", elem_status)
+            for (n=0 ; n < NotFinish.length ; n++) {
+                elem[n].style.width = Completeness[NotFinish[n]] + "%";
+                elem_value[n].innerHTML = Completeness[NotFinish[n]] + "%"
+                elem[n].style.backgroundColor = "#48D1CC";
+                elem_status[n].innerHTML = "FINISH";
+            //     // console.log("(-----------------------------)")
+            }
+        } else {
+            var elem = document.getElementsByClassName("myBar1");
+            var elem_value = document.getElementsByClassName("label1");
+            var elem_status = document.getElementsByClassName("status")
+            console.log("elem_status: ", elem_status)
+            for (n=0 ; n < Completeness.length ; n++) {
+                if (Completeness[n] != "100%") {
+                    elem[n].style.width = "100%";
+                    elem_value[n].innerHTML = "100%";
+                    elem_status[n].innerHTML = "FINISH";
+                }
+            }
+        }
+    });
+
+    socket.on('Back_Data', function(message) {
+        var CaseStatus = message.data.CaseStatus;
+        var Completeness = message.data.Completeness;
+        var Case = message.data.Case;
+        var Stop_Completeness = 0;
+        console.log("Catch message", message)
+
+        if (Completeness >= 98) {
+            Completeness = "100%"
+        }
+        else {
+            // var Completeness = message.data.Completeness;
+            var Completeness = Object.values(message.data.Completeness);
+        }
+        //  ---------------------------------------- //
+        var FINAL_TABLE = "";
+        // console.log(CaseNumber,typeof(CASE_NUMBER))
+        var HTML_TITLE = "<table>" + "<tr>"
+                        + "<td>" + "CreateTime" + "</td>"
+                        + "<td style='text-align: center;'>" + "CaseNumber" + "</td>"
+                        + "<td style='text-align: center;'>" +"System" + "</td>"
+                        + "<td style='text-align: center;'>" +"CaseType" + "</td>"
+                        + "<td style='text-align: left;'>" +"Completeness Bar" + "</td>"
+                        + "<td style='text-align: center;'>" + "Status" + "</td>"
+                        + "<td style='text-align=center'>"+ "Content" +"</td>"+"</tr>"
+                        // +"<thead>" + "<tr>" + "<th colspan='5'" + "style='font-size:50px; text-align: left; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; width: 100%;color: white;'>TestCase WorkList</th>"
+                        +"</tr>" + "</thead>" + "<COL width='210px'>" + "<COL width='140px'>" + "<COL width='140px'>" + "<COL width='140px'>" +"<COL width='530px'>" + "<COL width='90px'>" + "<COL width='90px'>"
+        console.log(typeof(CASE_NUMBER));
+        if (typeof(CASE_NUMBER) == "object") {
+            // console.log("1")
+            var count = [];
+            if (CASE_NUMBER.length > 1) {
+                // console.log('MutiData');
+                var BAR="<td class='content' style='vertical-align: text-top;'>" + "<div id='bar'>" + "<div id='myProgress'>" + "<div id='myBar'>" + "<div id='label'>"+`${Completeness[index]}`+"</div>"
+                +"</div>"+"</div>"
+                for (var index=0; index < CASE_NUMBER.length; index++) {
+                    if (Completeness[index] != "100%") {
+                        count.push(index)
+                        console.log("-------------------------------------------------------------------------------------")
+                        data[index].splice(2, 0, "<td style='text-align: center;'>" + `${SYSTEM[index]}` + "</td>")
+                        data[index].splice(3, 0, "<td style='text-align: center;'>" + `${CASE_TYPE[index]}` + "</td>")
+                        data[index].splice(4, 0, "<td class='content' style='vertical-align: text-top'>" + "<div class='bar1'>" + "<div class='myProgress1'>" + "<div class='myBar1' style='width: 20%;'>" + "<div class='label1'>"+`${Completeness[index]}`+"</div>");
+                        data[index].splice(5, 0, "<div class='status'>" + "<td style='text-align: center;'>" + `${WORK_STATUS[index]}` + "</td>" + "</div>")
+                        data[index].splice(6, 0, "<td style='text-align: center;'>" + "<button onclick='info" + '('+ '"' + `${CASE_NUMBER[index]}` + '"' +')' + "'>info</button>")
+                        console.log(WORK_STATUS[index])
+                        console.log("-------------------------------------------------------------------------------------")
+
+                    }
+                    else if (WORK_STATUS[index] == "ERROR") {
+                        data[index].splice(2, 0, "<td style='text-align: center;'>" + `${SYSTEM[index]}` + "</td>")
+                        data[index].splice(3, 0, "<td style='text-align: center;'>" + `${CASE_TYPE[index]}` + "</td>")
+                        data[index].splice(4, 0, "<td class='content' style='vertical-align: text-top; width: 100%;'>" + "<div class='ErrorBar'>" + "<div class='myProgress'>" + "<div class='myBar'>" + "<div class='label'>"+`${Completeness[index]}`+"</div>");
+                        data[index].splice(5, 0, "<td style='text-align: center;'>" + "<div class='status;'"> + `${WORK_STATUS[index]}` + "</div>" + "</td>")
+                        data[index].splice(6, 0, "<td style='text-align: center;'>" + "<button onclick='info" + '('+ '"' + `${CASE_NUMBER[index]}` + '"' +')' + "'>info</button>")
+                        // ("-----------------------------------------------------------------------------------------------")
+
+                    }
+                    else {
+                        // console.log("Here")
+                        data[index].splice(2, 0, "<td style='text-align: center;'>" + `${SYSTEM[index]}` + "</td>")
+                        data[index].splice(3, 0, "<td style='text-align: center;'>" + `${CASE_TYPE[index]}` + "</td>")
+                        data[index].splice(4, 0, "<td class='content' style='vertical-align: text-top; width: 100%;'>" + "<div class='FinishBar'>" + "<div class='myProgress'>" + "<div class='myBar'>" + "<div class='label'>"+`${Completeness[index]}`+"</div>");
+                        data[index].splice(5, 0, "<td style='text-align: center;'>" + `${WORK_STATUS[index]}` + "</td>")
+                        data[index].splice(6, 0, "<td style='text-align: center;'>" + "<button onclick='info" + '('+ '"' + `${CASE_NUMBER[index]}` + '"' +')' + "'>info</button>")
+                    }
+                }
+                // ("-----------------------------------------------------------------------------------------------")
+                // var HTML = HTML_TITLE + FINAL_TABLE;
+                // document.getElementById("table").innerHTML = HTML;
+                // ("-----------------------------------------------------------------------------------------------")
+                console.log("Add Data: ", data)
+                $(document).ready(function() {
+                $('#table').DataTable( {
+                    data: data,
+                    order: [[ 0, "desc" ]],
+                    columns: [
+                        { className: "text-center", "width": "12%",  title: "CreateTime" },
+                        { className: "text-center","width": "8%", title: "CaseNumber" },
+                        { className: "text-center","width": "6%", title: "System" },
+                        { className: "text-center","width": "6%", title: "CaseType" },
+                        { className: "text-center","width": "46%", title: "Completeness Bar" },
+                        { className: "text-center","width": "6%", title: "Status" },
+                        { className: "text-center","width": "6%", title: "Content" },
+                    ],
+                });
+                });
+            }
+        }
+        else {
+            console.log('SingleData');
+            var BAR="<td class='content' style='vertical-align: text-top;'>" + "<div id='bar'>" + "<div id='myProgress'>" + "<div id='myBar'>" + "<div id='label'>"+ `${Completeness}` +"</div>"
+                +"</div>"+"</div>"
+            var HTML_BODY = "<tr>"  + "<td>" + `${CREATE_TIME}` + "</td>"
+                            + "<td style='text-align: center;'>" + `${CASE_NUMBER}` +  "</td>"
+                            + "<td style='text-align: center;'>" + `${SYSTEM}` +  "</td>"
+                            + "<td style='text-align: center;'>" + `${CASE_TYPE}` +  "</td>"
+                            + BAR
+                            + "<td style='text-align: center;'>" + `${WORK_STATUS}` + "</td>"
+                            + "<td style='text-align: center;'>" + "<button onclick='info" + '('+ '"' + `${CASE_NUMBER}` + '"' +')' + "'>info</button>"
+                            + "</tr>" + "</tbody>" + "</table>"
+                var HTML = HTML_TITLE + HTML_BODY;
+                document.getElementById("table").innerHTML = HTML;
+                var elem = document.getElementById("myBar");
+                elem.style.width = Completeness;
+        }
+    // (----------------------------------------------------------------------------------------------------------------)
+    });
+
+    function changCss(obj) {
+        var arr = document.getElementsByTagName("a");
+        for (var i = 0; i < arr.length; i++) {
+            if (obj == arr[i]) {       //当前页样式
+                obj.style.backgroundColor = "#006B00";
+                obj.style.color = "#ffffff";
+            }
+            else {
+                arr[i].style.color = "";
+                arr[i].style.backgroundColor = "";
+            }
+        }
+    }
+    // (----------------------------------------------------------------------------------------------------------------)
+});
+</script>

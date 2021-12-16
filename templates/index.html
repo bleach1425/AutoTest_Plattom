@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>John | 自動化檢測服務網</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv=“X-UA-Compatible” content=“IE=edge”>
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../Shopping/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../static/images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="../static/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <!-- favicons -->
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/custom-responsive-style.css">
+    <!--  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../static/script/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../static/script/all-plugins.js"></script>
+    <script type="text/javascript" src="../static/script/plugin-active.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+    </style>
+
+    <style type="text/css">
+    table {
+        font-family: 'Poppins', sans-serif;
+        /* margin-block: 20px; */
+        margin-bottom: 50px;
+        margin-left:auto;
+        margin-right: auto;
+        width: 1200px;
+    }
+    td {
+        font-family: 'Poppins', sans-serif;
+        padding-left: 5px;
+        height: 40px ;
+        border: 1px solid #333;
+    }
+    thead,
+    tfoot {
+        font-family: 'Poppins', sans-serif;
+        background-color: #333;
+        color: #fff;
+    }
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic);
+        /*Button One*/
+        .button-one {
+            color: white;
+            position: relative;left:625px;
+            width: 305px;
+            height: 75px;
+            font-size: 30px;
+            margin-bottom: 20px;
+            padding:20px 60px;
+            outline: none;
+            background-color: #00a498;
+            border: none;
+            border-radius:5px;
+            box-shadow: 0 9px #95a5a6;
+        }
+
+        .button-one:hover{
+            background-color: #00a498;
+        }
+
+        .button-one:active {
+            background-color: #00a498;
+            box-shadow: 0 5px #95a5a6;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+
+<body>
+<!-- Header starts here -->
+<header id="Header">
+    <nav class="main-navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="logo">
+                        <a href="#"><img src="../static/images/logo.png" alt="Logo"></a>
+                    </div>
+                </div>
+                <div class="col text-right">
+                    <div class="menu-wrap">
+                        <div id="nav-icon1">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="index" class="smooth-scroll">Home</a></li>
+            <li><a class="smooth-scroll" href="auth/logout">Logout</a></li>
+            <li><a class="backstage" onclick="backstage()">Backstage</a></li>
+            <li><a class="Reset" onclick="database()">Reset Database</a></li>
+            <li><a class="Blog" onclick="blog()">Blog</a></li>
+            <li><a class="Api_Service" onclick="api_service()">Api_Service</a></li>
+            <li><a class="Shopping" onclick="Shopping()">Shopping</a></li>
+            <li><a class="Dashborad" onclick="Dashborad()">Dashborad</a></li>
+
+        </ul>
+    </div>
+</header>
+<!-- Header ends here -->
+<!-- Banner starts here -->
+<section id="HeroBanner">
+    <div id="BannerSlider" class="owl-carousel">
+        <div class="item">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="banner-text">
+                            <h1>我們用最專業的態度<br/> 替我們所有的客戶服務 </h1>
+                            <p> 提供最專業的AI醫療測試，完善的測試報告
+                                <br/>以及提供多項專業的分析圖表
+                                <br/>協助客戶了解及改善產品</p>
+                            <div class="bannet-cta">
+                                <div class="cta-1">
+                                    <a href="#">Click Here</a>
+                                </div>
+                                <div class="cta-2">
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="banner-text">
+                            <h1>我們用最專業的態度<br/> 替我們所有的客戶服務</h1>
+                            <p>提供最專業的AI醫療測試，完善的測試報告
+                                <br/>以及提供多項專業的分析圖表
+                                <br/>協助客戶了解及改善產品</p>
+                            <div class="bannet-cta">
+                                <div class="cta-1">
+                                    <a href="#">Click Here</a>
+                                </div>
+                                <div class="cta-2">
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner ends here -->
+<!-- Features section starts here -->
+<section id="Gain">
+    <div class="container">
+        <div class="title text-center">
+            <h3>提供的測試內容</h3>
+            <p>共提供四種面向的自動化測試服務，其中包含軟體測試、App測試、網站測試、以及專業的AI模型評估，長佳會替您規劃最專業且客觀的測試，當然也可提供客製化的測試內容。</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                <div class="each-icon box-1">
+                    <div class="icon-wrap">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3>WEB TestCase</h3>
+                        <p>替您規劃軟體檢測，包含GUI介面檢測、各項功能及負載測試，並在測試完畢提供專業的Report File供參考。</p>
+                        <div class="cta">
+                            <a title="Read More" href={{ server_ip }}TestENV_System>
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                <div class="each-icon box-2">
+                    <div class="icon-wrap">
+                        <i class="fa fa-chart-pie"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3>APP TestCase</h3>
+                        <p>替您規劃App的各項檢測，其中包含UI介面檢測、性能檢測及負載測試，並在測試完畢提供專業的Report File供參考。</p>
+                        <div class="cta">
+                            <a title="Read More" href={{ server_ip }}TestENV_APP><i
+                                class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                <div class="each-icon box-3">
+                    <div class="icon-wrap">
+                        <i class="fa fa-tachometer-alt"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3>API TestCase</h3>
+                        <p>使用Python自動化檢測，替您檢測網站的所有GUI介面、連結、各項API及負載測試，並在測試完畢提供專業的Report File供參考。</p>
+                        <div class="cta">
+                            <a title="Read More" href={{ server_ip }}TestENV_Api><i
+                                class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                <div class="each-icon box-4">
+                    <div class="icon-wrap">
+                        <i class="fa fa-cubes"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h3>AI Model TestCase</h3>
+                        <p>依照您的AI Model類型，提供提供專業及客觀的測試，幫您客製化模型、及效能檢測，並在測試完畢提供專業的Report File供參考</p>
+                        <div class="cta">
+                            <a title="Read More" href={{ server_ip }}FileUpload_AI_Model><i
+                                    class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <table>
+        <COL width='300px'>
+        <COL width='300px'>
+        <COL width='300px'>
+        <COL width='300px'>
+        <tbody>
+        <tr>
+            <td colspan="4" href="backstage_layer1" style="font-size: 40px; text-align: center; padding-top: 20px; padding-bottom: 20px; background-color: #00a498;">測試機狀態</td>
+        </tr>
+        <tr>
+            <td style="background-color:slategrey;color: #fff;text-align: center;">CaseName</td>
+            <td style="background-color: slategrey;color: #fff;text-align: left;">System</td>
+            <td style="background-color: slategrey;color: #fff;text-align: left;">Status</td>
+            <td style="background-color: slategrey;color: #fff;text-align: center;">Completeness</td>
+        </tr>
+        </tbody>
+        <tbody id="content">
+    </table>
+</section>
+</section>
+<footer id="Footer">
+    <div class="container text-center">
+        <div class="footer-text ">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="copy-right">
+                        <p>© Small Business, Inc.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
+                    <div class="social-share">
+                        <ul>
+                            <li>
+                                <a href="http://192.168.5.181:5666/App_Test"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--        <div class="row">-->
+            <!--          <div class="col-12">-->
+            <!--            <p class="designed">Designed by <a href="https://www.position2.com/" target="_blank">Position2</a></p>-->
+            <!--          </div>-->
+            <!--        </div>-->
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+<script type="text/javascript">
+    var Server_ip = {{ server_ip|tojson }}
+    var SqlData = {{ data|tojson }}
+    
+    console.log(Server_ip)
+    function backstage() {
+        window.location.href="backstage_layer";
+    }
+    function blog() {
+        window.location.href= "http://localhost:8000";
+    }
+    function api_service() {
+        window.location.href = "http://192.168.5.181:5588/docs";
+    }
+    function Shopping() {
+        window.location.href = Server_ip + 'shopping/index'
+    }
+    function Dashborad() {
+        window.location.href= "http://192.168.5.181:5555/dashboard.html";
+    }
+    var FINAL_HTML = "";
+    console.log(SqlData, SqlData.length)
+    for (index=0 ; index < SqlData.length ; index++) {
+        var HTML_BODY = "<tr>" + "<td style='text-align:left;'>" + `${SqlData[index][1]}` + "</td>"
+                      +"<td style='text-align:left;'>"+ `${SqlData[index][2]}` + "</td>"
+                      +"<td style='text-align:left;'>"+ `${SqlData[index][3]}` + "</td>"
+                      +"<td style='text-align:center;'>"+ `${SqlData[index][4]}` +"</td>" + "</tr>"
+        FINAL_HTML += HTML_BODY
+    }
+    // console.log(FINAL_HTML)
+    document.getElementById("content").innerHTML = FINAL_HTML;
+
+    // function backstage() {
+    //     window.location.href="backstage_layer";
+    // }
+    const save = "System_Save"
+    function click(casetype) {
+        obj = {
+            "CaseType": casetype
+        }
+        fetch(save, {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: myJSON,
+            }).then((response)=>{
+                return response.text()
+            })
+    }
+    const database_clear = "clear";
+    function database() {
+        fetch(database_clear, {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: "",
+            }).then((response)=>{
+                return response.text()
+                location.reload()
+            })
+    }
+</script>

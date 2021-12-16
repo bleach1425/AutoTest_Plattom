@@ -1,0 +1,181 @@
+{% extends 'base.html' %} 
+    {% block body %}
+        <head>
+            <link rel="stylesheet" href="../../../static/styles/Shopping/checkout.css">
+            <script src="../../../static/script/Shopping/checkout.js" charset="utf-8"></script>
+            <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <!-- Latest compiled and minified CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Latest compiled JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+            </style>
+            <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+        </head>
+        <body>
+            <br>
+            <b><p class="carts" id='carts_title'>結帳頁面</p></b>
+
+            
+            {% if table_dict %}
+            <div class="information">
+                <h5 style="background-color: rgb(158, 158, 158); padding: 10px;">訂購者資料</h5>
+                <button class="btn btn-primary" id="switch" onclick="fix()">預設資料</button>
+                <br>
+                <form action="/shopping/create_order", method="POST">
+                <input type=hidden name="user", value="{{ username }}">
+                {% for key, infor in table_dict.items() %}
+                    {{ key }}:<br>
+                    <input id="{{ infor.0 }}" name="{{ infor.0 }}" type="text" value="{{ infor.1 }}" style="width: 100%;" readonly><br>
+            {% endfor %}
+            <br>
+            <h5 style="background-color: rgb(158, 158, 158); padding: 10px;">運送方式</h5>
+            <input class="pay_type" type="radio" name="send_type" value="7-11" required>7-11
+            <input class="pay_type" type="radio" name="send_type" value="Family">全家
+            <input class="pay_type" type="radio" name="send_type" value="Home">宅配到家
+            <br><br>
+            <h5 style="background-color: rgb(158, 158, 158); padding: 10px;">付款方式</h5>
+            <input class="pay_type" type="radio" name="pay_type" value="After" required>貨到付款
+            <input class="pay_type" type="radio" name="pay_type" value="Crash">信用卡付款
+            <input class="pay_type" type="radio" name="pay_type" value="Store">超商付款
+            <br><br>
+            </div>
+            <div class="table_information">
+                <table id="myTable" class="display" style="width: 100%;">
+                    <thead style="background-color: rgb(158, 158, 158)">
+                        <tr>
+                            <th>編號</th>
+                            <th>商品名稱</th>
+                            <th>商品價錢</th>
+                            <th>商品數量</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="card" id='count_block'>
+                    <div class="card-body">
+                        <p class="count_price">商品總金額: {{ count_price }}</p>
+                    </div>
+                </div>
+                </div>
+            <input type=hidden name="total_price", value="{{ count_price }}">
+            <input class="btn btn-primary" type="submit" style="float: right; padding:15px ;font-size: 20px ;margin-right: 10%" value="確認結帳">
+            <br><br><br>
+        </form>
+            {% endif %}
+        </body>
+
+        <script type='text/javascript'>
+            var ip = {{ ip|tojson }}
+            var data = {{ carts_list|tojson }}
+            var user_infer = {{ user_infer|tojson }}
+            
+            if (!data.length) {
+                window.location.href= ip + "shopping/index"
+            }
+
+            for (row in data) {
+                data[row].splice(4, 1, '<td><button ' + 'class="btn btn-danger"'+ 'id="delete_button"' + 'onclick="delete_item()" ' + 'style="float: right;">' + 'Delete</button></td>')
+            }
+            $(document).ready( function () {
+                var table = $('#myTable').DataTable({
+                    data: data,
+                });
+            } );
+            
+            function delete_item() {
+                var table = $('#myTable').DataTable()
+                var url = ip + 'shopping/delete_carts'
+
+                $('#myTable tbody').on('click', "#delete_button", function() {
+                    // delete data, and save index
+                    var remove_data = $(this).parents('tr')[0];
+                    var remove_index = $(this).parents('tr').find("td").eq(0).text();
+                    // console.log(remove_data, typeof(remove_data))
+                    table.row(remove_data).remove().draw();
+
+                    obj = {
+                        "remove_index": remove_index
+                    }
+                    myjson = JSON.stringify(obj)
+                    console.log("myjson: ", myjson)
+
+                    // Call api delete item from carts
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type":"application/json"
+                        },
+                        body: myjson,
+                        }).then((response)=> {
+                        return response.text();
+                    })
+                    
+                    // reload(reset item index)
+                    location.reload();
+                });
+            }
+
+            function checkout() {
+                // Make sure screen
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                title: '確定要結帳了嗎?',
+                text: "確認後將導向結帳頁面",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '是, 我要結帳!',
+                cancelButtonText: '不, 我再考慮一下',
+                reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                    '太棒了!',
+                    '結帳中請稍後',
+                    'success'
+                    )
+                    url = ip + '/shopping/create_order'
+                    fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            "Content-Type":"application/json"
+                        },
+                        }).then((response)=> {
+                        return response.text();
+                    })
+                    window.location.href= ip + 'shopping/finish'
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                    '返回購物車',
+                    '當您決定好在下訂單 :)',
+                    'error'
+                    )
+                }
+                })
+                // take backend create order
+                fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            "Content-Type":"application/json"
+                        },
+                        }).then((response)=> {
+                        return response.text();
+                    })
+                }
+        </script>
+    {% endblock %}

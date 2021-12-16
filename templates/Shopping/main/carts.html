@@ -1,0 +1,170 @@
+{% extends 'base.html' %} 
+    {% block body %}
+        <head>
+            <link rel="stylesheet" href="../../../static/styles/Shopping/carts.css">
+            <script src="../../../static/script/Shopping/carts.js" charset="utf-8"></script>
+            <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+            </style>
+            <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+        </head>
+        <body>
+            <br>
+            <b><p class="carts" id='carts_title'>您的購物車</p></b>
+            {% if carts_list %}
+            <div class="table_information">
+                <table id="myTable" class="display" style="width: 100%;">
+                    <thead style="background-color: rgb(158, 158, 158)">
+                        <tr>
+                            <th>編號</th>
+                            <th>商品名稱</th>
+                            <th>商品價錢</th>
+                            <th>商品數量</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <!-- <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Iphone12</td>
+                            <td>25000</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Samsung S21</td>
+                            <td>23000</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody> -->
+                </table>
+                <div class="card" id='count_block'>
+                    <div class="card-body">
+                        <a style="float: right;">商品總金額: {{ count_price }}</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <p class="total_price">總金額: 48000</p> -->
+            <button class="check_button btn btn-primary" onclick="pay_by_ecpay({{ carts_list }})">
+                使用緣界信用卡服務
+            </button>
+            <button class="btn btn-primary" onclick="checkout()">前往結帳</button>
+            {% else %}
+            <p style="text-align: center; font-size: 20px;">
+                購物車空空如也, 快去新增商品吧~~
+            </p>
+            {% endif %}
+        </body>
+
+        <script type='text/javascript'>
+            var ip = {{ ip|tojson }}
+            var data = {{ carts_list|tojson }}
+            console.log(ip)
+            for (row in data) {
+                data[row].splice(4, 1, '<td><button ' + 'class="btn btn-danger"'+ 'id="delete_button"' + 'onclick="delete_item()" ' + 'style="float: right;">' + 'Delete</button></td>')
+            }
+            console.log(data);
+            $(document).ready( function () {
+                var table = $('#myTable').DataTable({
+                    data: data,
+                });
+            } );
+            
+            function delete_item() {
+                var table = $('#myTable').DataTable()
+                var url = ip + 'shopping/delete_carts'
+
+                $('#myTable tbody').on('click', "#delete_button", function() {
+                    // delete data, and save index
+                    var remove_data = $(this).parents('tr')[0];
+                    var remove_index = $(this).parents('tr').find("td").eq(0).text();
+                    // console.log(remove_data, typeof(remove_data))
+                    table.row(remove_data).remove().draw();
+
+                    obj = {
+                        "remove_index": remove_index
+                    }
+                    myjson = JSON.stringify(obj)
+                    console.log("myjson: ", myjson)
+
+                    // Call api delete item from carts
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type":"application/json"
+                        },
+                        body: myjson,
+                        }).then((response)=> {
+                        return response.text();
+                    })
+                    
+                    // reload(reset item index)
+                    location.reload();
+                });
+            }
+
+            function checkout() {
+                // Make sure screen
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                title: '確定要結帳了嗎?',
+                text: "確認後將導向結帳頁面",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '是, 我要結帳!',
+                cancelButtonText: '不, 我再考慮一下',
+                reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                    '太棒了!',
+                    '前往結帳中!!',
+                    'success'
+                    )
+                    console.log(ip + 'shopping' + '/carts')
+                    window.location.href = ip + 'shopping' + '/checkout'
+                    // url = ip + '/shopping/create_order'
+                    // fetch(url, {
+                    //     method: 'GET',
+                    //     headers: {
+                    //         "Content-Type":"application/json"
+                    //     },
+                    //     }).then((response)=> {
+                    //     return response.text();
+                    // })
+                    
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                    '返回購物車',
+                    '當您決定好在下訂單 :)',
+                    'error'
+                    )
+                }
+                })
+                // take backend create order
+                // fetch(url, {
+                //         method: 'GET',
+                //         headers: {
+                //             "Content-Type":"application/json"
+                //         },
+                //         }).then((response)=> {
+                //         return response.text();
+                //     })
+                }
+        </script>
+    {% endblock %}
