@@ -47,7 +47,7 @@ login_manager.login_view = 'auth.login'
 
 # app config
 app.config['SECRET_KEY'] = os.urandom(24)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://rubio:0000@192.168.5.181:3306/mtv_flask'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:password@ip/db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Migrate(app, db)
